@@ -1,0 +1,422 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body, .wrap { font-family: 'Nunito', sans-serif; }
+
+  .wrap {
+    background: linear-gradient(135deg, #fff0f5 0%, #fce4f0 40%, #fff5e1 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .floaties {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+
+  .heart-float {
+    position: absolute;
+    font-size: 1.4rem;
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-10vh) rotate(25deg); opacity: 0; }
+  }
+
+  .hero {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+  .months-badge {
+    display: inline-block;
+    background: #ff6b9d;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .hero h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.4rem;
+    color: #d63384;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero .sub {
+    font-size: 1rem;
+    color: #a0547a;
+    margin-bottom: 2rem;
+  }
+
+  .big-heart {
+    font-size: 3.5rem;
+    display: block;
+    animation: heartbeat 1.5s infinite;
+    margin: 0.5rem auto;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    56% { transform: scale(1); }
+  }
+
+  /* Photo gallery */
+  .section { position: relative; z-index: 1; padding: 1.5rem; }
+
+  .section-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.4rem;
+    color: #d63384;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto 1rem;
+  }
+
+  .photo-slot {
+    aspect-ratio: 1;
+    border-radius: 20px;
+    background: #fce4f0;
+    border: 2.5px dashed #f49abf;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #c27098;
+    font-weight: 600;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .photo-slot:hover { transform: scale(1.03); }
+
+  .photo-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 17px;
+  }
+
+  .photo-slot .upload-icon { font-size: 2rem; margin-bottom: 4px; }
+
+  .upload-label {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    background: #ff6b9d;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 8px 22px;
+    border-radius: 50px;
+    margin: 0.5rem auto;
+    width: fit-content;
+    transition: background 0.2s;
+  }
+
+  .upload-label:hover { background: #e0547e; }
+
+  input[type="file"] { display: none; }
+
+  /* Love message */
+  .love-card {
+    background: #fff;
+    border-radius: 24px;
+    border: 1.5px solid #f7c2da;
+    padding: 1.5rem;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .love-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #ff6b9d, #ffb347, #ff6b9d);
+  }
+
+  .love-card p {
+    font-size: 1rem;
+    color: #7a3555;
+    line-height: 1.8;
+  }
+
+  .love-card .names {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.1rem;
+    color: #d63384;
+    margin-top: 1rem;
+  }
+
+  /* Timeline */
+  .timeline {
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 2.5rem;
+  }
+
+  .t-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 1.2rem;
+  }
+
+  .t-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #ffb3d1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .t-content {
+    background: #fff;
+    border-radius: 16px;
+    border: 1.5px solid #f7c2da;
+    padding: 0.8rem 1rem;
+    flex: 1;
+  }
+
+  .t-content .t-label {
+    font-size: 0.75rem;
+    color: #c27098;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .t-content .t-text {
+    font-size: 0.95rem;
+    color: #7a3555;
+    margin-top: 2px;
+  }
+
+  /* Countdown */
+  .counter-grid {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 1rem auto 0.5rem;
+  }
+
+  .c-box {
+    background: #fff;
+    border: 1.5px solid #f7c2da;
+    border-radius: 16px;
+    padding: 0.7rem 0.9rem;
+    text-align: center;
+    min-width: 64px;
+  }
+
+  .c-box .c-num {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    color: #d63384;
+    line-height: 1;
+  }
+
+  .c-box .c-lbl {
+    font-size: 0.65rem;
+    color: #c27098;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  .footer-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #c27098;
+    padding-bottom: 1.5rem;
+  }
+</style>
+
+<div class="wrap">
+  <!-- Floating hearts bg -->
+  <div class="floaties" id="floaties"></div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="months-badge">🎉 7 Months Together 🎉</div>
+    <h1>Happy 7 Months<br>Kavinila! 💖</h1>
+    <p class="sub">From your love, Hemanth 🥰</p>
+    <span class="big-heart">❤️</span>
+  </div>
+
+  <!-- Photo section -->
+  <div class="section">
+    <div class="section-title">Our Moments 📸</div>
+    <div class="photo-grid" id="photo-grid">
+      <div class="photo-slot" onclick="document.getElementById('upload1').click()">
+        <span class="upload-icon">🌸</span>
+        <span>Add photo 1</span>
+      </div>
+      <div class="photo-slot" onclick="document.getElementById('upload2').click()">
+        <span class="upload-icon">💕</span>
+        <span>Add photo 2</span>
+      </div>
+      <div class="photo-slot" onclick="document.getElementById('upload3').click()">
+        <span class="upload-icon">✨</span>
+        <span>Add photo 3</span>
+      </div>
+      <div class="photo-slot" onclick="document.getElementById('upload4').click()">
+        <span class="upload-icon">🌟</span>
+        <span>Add photo 4</span>
+      </div>
+    </div>
+    <input type="file" id="upload1" accept="image/*" onchange="setPhoto(0,this)">
+    <input type="file" id="upload2" accept="image/*" onchange="setPhoto(1,this)">
+    <input type="file" id="upload3" accept="image/*" onchange="setPhoto(2,this)">
+    <input type="file" id="upload4" accept="image/*" onchange="setPhoto(3,this)">
+  </div>
+
+  <!-- Love message -->
+  <div class="section">
+    <div class="section-title">A Little Note 💌</div>
+    <div class="love-card">
+      <p>
+        7 months ago, everything changed — and all for the better. 
+        You make every ordinary day feel like something worth remembering. 
+        Your smile, your laugh, your presence — I wouldn't trade it for anything. 💫
+        <br><br>
+        Thank you for being you. Thank you for being mine.
+        Here's to many, many more months together. 🌹
+      </p>
+      <div class="names">— Hemanth 💗 Kavinila</div>
+    </div>
+  </div>
+
+  <!-- Mini timeline -->
+  <div class="section">
+    <div class="section-title">Our Story So Far 🌈</div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot">🌸</div>
+        <div class="t-content">
+          <div class="t-label">Month 1</div>
+          <div class="t-text">Where it all began — a hello that changed everything 🥹</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🌙</div>
+        <div class="t-content">
+          <div class="t-label">Month 3</div>
+          <div class="t-text">Late night talks, inside jokes, and realizing you're special 💬</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">🌟</div>
+        <div class="t-content">
+          <div class="t-label">Month 5</div>
+          <div class="t-text">Adventures, memories, and growing together 🌍</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot">❤️</div>
+        <div class="t-content">
+          <div class="t-label">Month 7 — Today!</div>
+          <div class="t-text">Still falling every single day. Happy mensiversary, Kavinila! 🎊</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Days together counter -->
+  <div class="section">
+    <div class="section-title">Days Together 🗓️</div>
+    <div class="counter-grid" id="counter-grid">
+      <div class="c-box"><div class="c-num" id="cnt-d">—</div><div class="c-lbl">Days</div></div>
+      <div class="c-box"><div class="c-num" id="cnt-h">—</div><div class="c-lbl">Hours</div></div>
+      <div class="c-box"><div class="c-num" id="cnt-m">—</div><div class="c-lbl">Mins</div></div>
+      <div class="c-box"><div class="c-num" id="cnt-s">—</div><div class="c-lbl">Secs</div></div>
+    </div>
+    <p class="footer-note">Counting every second with you 💞</p>
+  </div>
+
+  <div class="footer-note" style="padding-bottom: 2rem;">
+    Made with 💖 by Hemanth for Kavinila
+  </div>
+</div>
+
+<script>
+  // Floating hearts
+  const emojis = ['❤️','💕','🌸','💖','✨','💗','🌹','💝'];
+  const floaties = document.getElementById('floaties');
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('div');
+    el.className = 'heart-float';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.fontSize = (0.9 + Math.random() * 1.1) + 'rem';
+    const dur = 6 + Math.random() * 8;
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay = (-Math.random() * dur) + 's';
+    floaties.appendChild(el);
+  }
+
+  // Photo upload
+  function setPhoto(idx, input) {
+    if (!input.files || !input.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const slots = document.querySelectorAll('.photo-slot');
+      slots[idx].innerHTML = '<img src="' + e.target.result + '" alt="Our photo">';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+
+  // Days counter — approximate from ~7 months ago
+  // Using ~210 days as the approximate start date
+  const approxStart = new Date(Date.now() - 210 * 24 * 60 * 60 * 1000);
+  
+  function updateCounter() {
+    const diff = Date.now() - approxStart.getTime();
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cnt-d').textContent = d;
+    document.getElementById('cnt-h').textContent = h;
+    document.getElementById('cnt-m').textContent = m;
+    document.getElementById('cnt-s').textContent = s;
+  }
+  updateCounter();
+  setInterval(updateCounter, 1000);
+</script>
